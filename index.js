@@ -11,12 +11,34 @@ app.get('/nueva-ruta', (req, res)=>{
 });
 
 app.get('/products', (req, res)=>{
+  res.json([
+    {
+      name: 'Producto 1',
+      price: 1000
+    },
+    {
+      name: 'Producto 2',
+      price: 2000
+    }
+  ]);
+});
+
+app.get('/product/:id', (req, res) => {
+  const { id } = req.params;
   res.json({
-    name: 'Producto 1',
-    price: 1000
+    id,
+    name: 'Product 3',
+    price: 3000
   });
 });
 
+app.get('/categories/:categoryId/products/:productId', (req, res) => {
+  const { categoryId, productId } = req.params;
+  res.json({
+    categoryId,
+    productId
+  });
+});
 
 app.listen(port, ()=>{
   console.log(`Hola desde consola de express en el puerto ${port}`);
