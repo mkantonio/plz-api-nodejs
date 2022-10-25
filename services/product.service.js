@@ -1,5 +1,8 @@
 const faker = require("faker");
 
+const tiempoAleatorio = Math.floor(Math.random() * (3500 - 2000 ) + 2000);
+
+
 class ProductService {
 
   constructor() {
@@ -31,7 +34,10 @@ class ProductService {
 
   // Retorna todos los productos
   find(){
-    return this.products;
+    return new Promise( (resolve, reject) => {
+      console.log(tiempoAleatorio);
+      setTimeout( () => resolve(this.products), tiempoAleatorio);
+    });
   }
 
   // Retorna un elemento buscado por ID
