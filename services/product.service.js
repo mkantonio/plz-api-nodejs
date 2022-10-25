@@ -22,7 +22,7 @@ class ProductService {
     }
   }
 
-  create(data){
+  async create(data){
     const newProduct = {
       id: faker.datatype.uuid(),
       ...data
@@ -33,7 +33,7 @@ class ProductService {
   }
 
   // Retorna todos los productos
-  find(){
+  async find(){
     return new Promise( (resolve, reject) => {
       console.log(tiempoAleatorio);
       setTimeout( () => resolve(this.products), tiempoAleatorio);
@@ -41,12 +41,13 @@ class ProductService {
   }
 
   // Retorna un elemento buscado por ID
-  findOne(id){
+  async findOne(id){
+    const name = this.getTotal();
     return this.products.find( item => item.id === id);
   }
 
 
-  update(id, data){
+  async update(id, data){
     const indexProduct = this.products.findIndex( (item) => item.id === id);
     if (indexProduct === -1){
       throw new Error('Product not found');
@@ -61,7 +62,7 @@ class ProductService {
   }
 
 
-  delete(id){
+  async delete(id){
     const indexProduct = this.products.findIndex( (item) => item.id === id);
     if (indexProduct === -1){
       throw new Error('Product not found');
