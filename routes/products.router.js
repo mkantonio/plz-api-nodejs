@@ -4,8 +4,8 @@ const ProductService = require('../services/product.service');
 const router = express.Router();
 const service = new ProductService();
 
-router.get('/', (req, res)=>{
-  const products = service.find();
+router.get('/', async (req, res)=>{
+  const products = await service.find();
   res.json(products);
 });
 
