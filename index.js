@@ -3,6 +3,7 @@ const routerApi = require('./routes');
 const app = express();
 const port = 3000;
 
+app.use(express.json()); //middleware para recibir información
 
 app.get('/', (req, res)=>{
   res.send(`Hola desde mi server en express en el puerto ${port}`);
